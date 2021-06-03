@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainViewModel.getAllNotes().observe(this, notes -> {
             Log.d("test", notes.toString() );
+            noteAdapter.submitList(notes);
         });
 
 //        mainViewModel.update(item); //update
