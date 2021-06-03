@@ -64,8 +64,56 @@ public class MainActivity extends AppCompatActivity {
             noteAdapter.submitList(notes);
         });
 
-//        mainViewModel.update(item); //update
-
 //        mainViewModel.deleteAllNotes(); //delete all data
+
+        fabAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetFields();
+                llAddOrUpdate.setVisibility(View.VISIBLE);
+                btnAdd.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Note note = new Note(
+                        0,
+                        etNoteTitle.getText().toString().trim(),
+                        etNoteDesc.getText().toString()
+                );
+                mainViewModel.insert(note); //insert
+                resetFields();
+            }
+        });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Note note = new Note(
+                        noteId,
+                        etNoteTitle.getText().toString().trim(),
+                        etNoteDesc.getText().toString()
+                );
+                mainViewModel.update(note); //update
+                resetFields();
+            }
+        });
+    }
+
+    private void resetFields(){
+        llAddOrUpdate.setVisibility(View.GONE);
+        btnAdd.setVisibility(View.GONE);
+        btnUpdate.setVisibility(View.GONE);
+        noteId = null;
+        etNoteTitle.setText(null);
+        etNoteDesc.setText(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (llAddOrUpdate.getVisibility() == View.VISIBLE) resetFields();
+        else super.onBackPressed();
     }
 }
