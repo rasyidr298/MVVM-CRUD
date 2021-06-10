@@ -2,6 +2,7 @@ package id.rrdev.mvvmroomdatabase.data.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -39,8 +40,6 @@ public class NoteRepo {
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
-
-
 
 
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> { //static : doesnt have reference to the
