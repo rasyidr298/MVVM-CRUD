@@ -24,7 +24,6 @@ public class NoteRepo {
     }
 
 
-
     public void insert(Note note) {
         new InsertNoteAsyncTask(noteDao).execute(note);
     }

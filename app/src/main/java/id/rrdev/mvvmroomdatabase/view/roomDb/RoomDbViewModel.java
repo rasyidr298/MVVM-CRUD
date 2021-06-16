@@ -1,4 +1,4 @@
-package id.rrdev.mvvmroomdatabase.view.main;
+package id.rrdev.mvvmroomdatabase.view.roomDb;
 
 import android.app.Application;
 
@@ -9,11 +9,11 @@ import java.util.List;
 import id.rrdev.mvvmroomdatabase.data.database.Note;
 import id.rrdev.mvvmroomdatabase.data.repository.NoteRepo;
 
-public class MainViewModel extends AndroidViewModel {
+public class RoomDbViewModel extends AndroidViewModel {
     private final NoteRepo repository;
     private final LiveData<List<Note>> allNotes;
 
-    public MainViewModel(@NonNull Application application) {
+    public RoomDbViewModel(@NonNull Application application) {
         super(application);
         repository = new NoteRepo(application);
         allNotes = repository.getAllNotes();

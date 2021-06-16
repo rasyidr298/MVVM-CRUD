@@ -1,4 +1,4 @@
-package id.rrdev.mvvmroomdatabase.view.main;
+package id.rrdev.mvvmroomdatabase.view.roomDb;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,10 +17,10 @@ import id.rrdev.mvvmroomdatabase.R;
 import id.rrdev.mvvmroomdatabase.data.database.Note;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class RoomDbActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton fabAddNote, fabDellete;
-    private MainViewModel mainViewModel;
+    private RoomDbViewModel roomDbViewModel;
     private RecyclerView rvNotes;
     private Button btnAdd, btnUpdate;
     private EditText etNoteTitle, etNoteDesc;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_room_db);
 
         init();
         setupView();
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdd.setOnClickListener(this);
 
         noteAdapter = new NoteAdapter();
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        roomDbViewModel = ViewModelProviders.of(this).get(RoomDbViewModel.class);
     }
 
     private void setupView(){
@@ -61,17 +61,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             resetFields();
             llAddOrUpdate.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.VISIBLE);
+            fabAddNote.setVisibility(View.GONE);
+            fabDellete.setVisibility(View.GONE);
             etNoteTitle.setText(note.getTitle());
             etNoteDesc.setText(note.getDescription());
             noteId = note.getId();
         });
 
         noteAdapter.setOnItemLongClickListener((view, note, position) -> {
-            new MaterialAlertDialogBuilder(MainActivity.this)
+            new MaterialAlertDialogBuilder(RoomDbActivity.this)
                     .setTitle("Hapus "+note.getTitle())
                     .setMessage("Yakin akan menghapus "+ note.getTitle())
                     .setPositiveButton("YA", ((dialog, which) -> {
-                        mainViewModel.delete(note);
+                        roomDbViewModel.delete(note);
                     }))
                     .setNegativeButton("TIDAK", ((dialog, which) -> { }))
                     .show();
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         rvNotes.setAdapter(noteAdapter);
 
-        mainViewModel.getAllNotes().observe(this, notes -> {
+        roomDbViewModel.getAllNotes().observe(this, notes -> {
             Log.d("test", notes.toString() );
             noteAdapter.submitList(notes);
         });
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         llAddOrUpdate.setVisibility(View.GONE);
         btnAdd.setVisibility(View.GONE);
         btnUpdate.setVisibility(View.GONE);
+        fabAddNote.setVisibility(View.VISIBLE);
+        fabDellete.setVisibility(View.VISIBLE);
         noteId = null;
         etNoteTitle.setText(null);
         etNoteDesc.setText(null);
@@ -112,10 +116,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             resetFields();
             llAddOrUpdate.setVisibility(View.VISIBLE);
             btnAdd.setVisibility(View.VISIBLE);
+            fabAddNote.setVisibility(View.GONE);
+            fabDellete.setVisibility(View.GONE);
         });
 
         fabDellete.setOnClickListener(v2 ->
-                mainViewModel.deleteAllNotes()
+                roomDbViewModel.deleteAllNotes()
         ); // delete
 
         btnAdd.setOnClickListener(v3 -> {
@@ -124,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     etNoteTitle.getText().toString().trim(),
                     etNoteDesc.getText().toString()
             );
-            mainViewModel.insert(note); //insert
+            roomDbViewModel.insert(note); //insert
             resetFields();
             hideKeyboard();
         });
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     etNoteTitle.getText().toString().trim(),
                     etNoteDesc.getText().toString()
             );
-            mainViewModel.update(note); //update
+            roomDbViewModel.update(note); //update
             resetFields();
             hideKeyboard();
         });

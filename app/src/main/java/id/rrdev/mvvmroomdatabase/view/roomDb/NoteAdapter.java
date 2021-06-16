@@ -1,4 +1,4 @@
-package id.rrdev.mvvmroomdatabase.view.main;
+package id.rrdev.mvvmroomdatabase.view.roomDb;
 
 import android.view.LayoutInflater;
 import android.view.View;
