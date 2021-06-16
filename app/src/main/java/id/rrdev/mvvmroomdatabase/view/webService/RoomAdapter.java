@@ -83,7 +83,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         public void bind(Room room){
             tvNamaRoom.setText(room.getNamaRoom());
-            tvKapasitasRoom.setText(room.getKapasitas());
+            tvKapasitasRoom.setText(String.valueOf(room.getKapasitas()));
         }
     }
 
