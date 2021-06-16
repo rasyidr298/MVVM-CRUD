@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public class WebServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_service);
 
+        roomAdapter = new RoomAdapter();
+
         init();
     }
 
@@ -34,6 +37,7 @@ public class WebServiceActivity extends AppCompatActivity {
         rvRoom = findViewById(R.id.rvWebService);
 
         rvRoom.setAdapter(roomAdapter);
+        rvRoom.setLayoutManager(new LinearLayoutManager(this));
 
         webServiceViewModel = ViewModelProviders.of(this).get(WebServiceViewModel.class);
         textView = findViewById(R.id.test);
@@ -50,7 +54,7 @@ public class WebServiceActivity extends AppCompatActivity {
         webServiceViewModel.getRoomLiveData().observe(this, roomResponse -> {
             if (roomResponse != null) {
                 List<Room> roomResponses = roomResponse.getRoom();
-//                roomAdapter.submitList(roomResponses);
+                roomAdapter.submitList(roomResponses);
 
                 textView.setText(roomResponses.get(1).getNamaRoom());
             }
