@@ -12,6 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:inputType="numberDecimal"
+        android:hint="nama ruangan"
+        android:text="4.4.4"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +26,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="kapasitas ruangan"
+        android:text="40"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@+id/etNama"
         app:layout_constraintStart_toStartOf="@+id/etNama"
         app:layout_constraintTop_toBottomOf="@+id/etNama" />
@@ -29,6 +36,10 @@
     <EditText
         android:id="@+id/etFasilitas"
         android:layout_width="0dp"
+        android:hint="fasilitas ruangan"
+        android:maxLines="1"
+        android:text="AC"
+        android:maxLength="10"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/etKapasitas"
         app:layout_constraintStart_toStartOf="@+id/etKapasitas"
@@ -37,6 +48,9 @@
     <EditText
         android:id="@+id/etDeskripsi"
         android:layout_width="0dp"
+        android:hint="deskripsi ruangan"
+        android:maxLines="5"
+        android:text="Ruangan ini berada di gedung 4 lantai 2 Universitas Amikom Yogyakarta, disediakan Meja Kursi"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/etFasilitas"
         app:layout_constraintStart_toStartOf="@+id/etFasilitas"
@@ -44,7 +58,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAddRoom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

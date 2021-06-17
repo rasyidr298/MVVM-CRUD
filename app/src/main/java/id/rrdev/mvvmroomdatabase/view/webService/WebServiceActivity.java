@@ -1,5 +1,6 @@
 package id.rrdev.mvvmroomdatabase.view.webService;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -73,7 +74,7 @@ public class WebServiceActivity extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> {
-            Toast.makeText(this, "tambah", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, FormWebServiceActivity.class));
         });
 
         swipeRefreshLayout.setOnRefreshListener(() -> {

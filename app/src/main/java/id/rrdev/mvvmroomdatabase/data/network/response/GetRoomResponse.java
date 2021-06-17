@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class RoomResponse {
+public class GetRoomResponse {
     @SerializedName("error")
     private boolean error;
 
