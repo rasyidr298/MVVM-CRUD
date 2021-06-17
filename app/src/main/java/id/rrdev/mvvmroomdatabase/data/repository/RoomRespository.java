@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import id.rrdev.mvvmroomdatabase.data.network.ApiRequest;
 import id.rrdev.mvvmroomdatabase.data.network.RetrofitRequest;
 import id.rrdev.mvvmroomdatabase.data.network.response.RoomResponse;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,5 +46,22 @@ public class RoomRespository {
 
                 });
         return data;
+    }
+
+    public void deleteRoom(Integer idRoom){
+        apiRequest.deleteRoom(idRoom)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.body() != null){
+                            Log.d(TAG, "room delete "+ response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.d(TAG, "room delete "+t.getMessage());
+                    }
+                });
     }
 }

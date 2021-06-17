@@ -12,16 +12,21 @@ import id.rrdev.mvvmroomdatabase.data.repository.RoomRespository;
 public class WebServiceViewModel extends AndroidViewModel {
 
     private RoomRespository roomRespository;
-    private LiveData<RoomResponse> roomResponseLiveData;
+    private LiveData<RoomResponse> getRoomLiveData;
 
     public WebServiceViewModel(@NonNull Application application) {
         super(application);
 
         roomRespository = new RoomRespository();
-        this.roomResponseLiveData = roomRespository.getllRoom();
+        this.getRoomLiveData = roomRespository.getllRoom();
     }
 
     public LiveData<RoomResponse> getRoomLiveData() {
-        return roomResponseLiveData;
+        return getRoomLiveData;
     }
+
+    public void deleteRoom(Integer idRoom){
+        roomRespository.deleteRoom(idRoom);
+    }
+
 }

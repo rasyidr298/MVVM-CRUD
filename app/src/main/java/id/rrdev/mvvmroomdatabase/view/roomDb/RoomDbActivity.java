@@ -38,6 +38,8 @@ public class RoomDbActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void init(){
+        roomDbViewModel = ViewModelProviders.of(this).get(RoomDbViewModel.class);
+
         fabAddNote = findViewById(R.id.fab_add_note);
         rvNotes = findViewById(R.id.rv_notes);
         btnAdd = findViewById(R.id.btn_add);
@@ -53,7 +55,7 @@ public class RoomDbActivity extends AppCompatActivity implements View.OnClickLis
         btnAdd.setOnClickListener(this);
 
         noteAdapter = new NoteAdapter();
-        roomDbViewModel = ViewModelProviders.of(this).get(RoomDbViewModel.class);
+        rvNotes.setAdapter(noteAdapter);
     }
 
     private void setupView(){
@@ -80,7 +82,6 @@ public class RoomDbActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         });
 
-        rvNotes.setAdapter(noteAdapter);
 
         roomDbViewModel.getAllNotes().observe(this, notes -> {
             Log.d("test", notes.toString() );

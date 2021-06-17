@@ -3,10 +3,13 @@ package id.rrdev.mvvmroomdatabase.view.webService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,6 +18,7 @@ import java.util.List;
 
 import id.rrdev.mvvmroomdatabase.R;
 import id.rrdev.mvvmroomdatabase.data.network.response.Room;
+import id.rrdev.mvvmroomdatabase.util.Server;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
@@ -74,16 +78,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvNamaRoom, tvKapasitasRoom;
+        private ImageView imageView;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvNamaRoom = itemView.findViewById(R.id.tvNamaRoomHome);
             tvKapasitasRoom = itemView.findViewById(R.id.tvKapasitasRoomHome);
+            imageView = itemView.findViewById(R.id.ivRoomHome);
         }
 
         public void bind(Room room){
-            tvNamaRoom.setText(room.getNamaRoom());
-            tvKapasitasRoom.setText(String.valueOf(room.getKapasitas()));
+            tvNamaRoom.setText("Ruang "+room.getNamaRoom());
+            tvKapasitasRoom.setText("Kapasitas "+ room.getKapasitas() + " Orang");
+            Glide.with(itemView).load(Server.URL+room.getImage()).into(imageView);
         }
     }
 
