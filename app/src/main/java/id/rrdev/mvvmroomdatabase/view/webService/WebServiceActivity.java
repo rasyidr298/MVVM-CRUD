@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,6 +18,7 @@ import java.util.List;
 
 import id.rrdev.mvvmroomdatabase.R;
 import id.rrdev.mvvmroomdatabase.data.network.response.Room;
+import static id.rrdev.mvvmroomdatabase.util.Constant.KEY_INTENT_ROOM;
 
 public class WebServiceActivity extends AppCompatActivity {
     private WebServiceViewModel webServiceViewModel;
@@ -34,6 +34,8 @@ public class WebServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_service);
 
         init();
+        getAllRoom();
+        setupView();
     }
 
     private void init(){
@@ -49,24 +51,20 @@ public class WebServiceActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getAllRoom();
-        setupView();
-    }
-
     private void setupView() {
-        roomAdapter.setOnItemClickListener((view, note, position) -> {
-            Toast.makeText(this, "click ruang" + note.getNamaRoom(), Toast.LENGTH_SHORT).show();
+        roomAdapter.setOnItemClickListener((view, room, position) -> {
+            Intent i = new Intent(this, FormWebServiceActivity.class);
+            i.putExtra(KEY_INTENT_ROOM, room);
+            startActivity(i);
         });
 
-        roomAdapter.setOnItemLongClickListener((view, note, position) -> {
+        roomAdapter.setOnItemLongClickListener((view, room, position) -> {
             new MaterialAlertDialogBuilder(WebServiceActivity.this)
-                    .setTitle("Menghapus Ruang "+note.getNamaRoom())
-                    .setMessage("Yakin akan menghapus Ruang"+ note.getNamaRoom())
+                    .setTitle("Menghapus Ruang "+room.getNamaRoom())
+                    .setMessage("Yakin akan menghapus Ruang"+ room.getNamaRoom())
                     .setPositiveButton("YA", ((dialog, which) -> {
-                        webServiceViewModel.deleteRoom(note.getIdRoom());
+                        webServiceViewModel.deleteRoom(room.getIdRoom());
+                        getAllRoom();
                     }))
                     .setNegativeButton("TIDAK", ((dialog, which) -> { }))
                     .show();

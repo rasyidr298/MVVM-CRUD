@@ -1,6 +1,10 @@
 package id.rrdev.mvvmroomdatabase.data.network.response;
 
-public class Room {
+import java.io.Serializable;
+
+
+@SuppressWarnings("serial")
+public class Room implements Serializable {
     private Integer idRoom;
     private String namaRoom;
     private Integer kapasitas;

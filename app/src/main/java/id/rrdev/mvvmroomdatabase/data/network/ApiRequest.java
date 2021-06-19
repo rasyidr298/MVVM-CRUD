@@ -18,12 +18,25 @@ public interface ApiRequest {
 
     @GET("TableRooms/DeleteRoom.php")
     Call<ResponseBody> deleteRoom(
-            @Query("idRoom") Integer idRoom);
+            @Query("idRoom") int idRoom);
 
     @FormUrlEncoded
     @POST("TableRooms/CreateRoom.php")
     Call<AddRoomResponse> addRoom(
             @Field("namaRoom") String namaRoom,
+            @Field("kapasitas") int kapasitas,
+            @Field("fasilitas1") String fasilitas1,
+            @Field("fasilitas2") String fasilitas2,
+            @Field("fasilitas3") String fasilitas3,
+            @Field("fasilitas4") String fasilitas4,
+            @Field("deskripsi") String deskripsi
+    );
+
+    @FormUrlEncoded
+    @POST("TableRooms/UpdateRoom.php")
+    Call<ResponseBody> updateRoom(
+            @Query("idRoom") int idRoom,
+            @Field("idRoom") int idRoomParams,
             @Field("kapasitas") int kapasitas,
             @Field("fasilitas1") String fasilitas1,
             @Field("fasilitas2") String fasilitas2,

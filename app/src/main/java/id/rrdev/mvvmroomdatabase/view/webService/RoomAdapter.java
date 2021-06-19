@@ -18,7 +18,7 @@ import java.util.List;
 
 import id.rrdev.mvvmroomdatabase.R;
 import id.rrdev.mvvmroomdatabase.data.network.response.Room;
-import id.rrdev.mvvmroomdatabase.util.Server;
+import id.rrdev.mvvmroomdatabase.util.Constant;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
@@ -90,7 +90,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         public void bind(Room room){
             tvNamaRoom.setText("Ruang "+room.getNamaRoom());
             tvKapasitasRoom.setText("Kapasitas "+ room.getKapasitas() + " Orang");
-            Glide.with(itemView).load(Server.URL+room.getImage()).into(imageView);
+            Glide.with(itemView).load(Constant.URL+room.getImage()).into(imageView);
         }
     }
 

@@ -97,4 +97,25 @@ public class RoomRespository {
         return data;
 
     }
+
+    //update
+    public void updateRoom ( int idRoom, int idRoomParams, int kapsitas, String fasilitas1, String fasilitas2, String fasilitas3, String fasilitas4,String deskripsi){
+
+        apiRequest.updateRoom(idRoom, idRoomParams, kapsitas, fasilitas1, fasilitas2, fasilitas3, fasilitas4, deskripsi)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Log.d(TAG, "onResponse response : " + response);
+
+                        if (response.body() != null){
+                            Log.d(TAG, "room update : "+ response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.d(TAG, "room update : "+t.getMessage());
+                    }
+                });
+    }
 }
