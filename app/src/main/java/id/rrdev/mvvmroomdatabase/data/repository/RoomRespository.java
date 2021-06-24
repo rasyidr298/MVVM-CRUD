@@ -24,7 +24,7 @@ public class RoomRespository {
     }
 
     //get all
-    public LiveData<GetRoomResponse> getllRoom() {
+    public LiveData<GetRoomResponse> getAllRoom() {
         final MutableLiveData<GetRoomResponse> data = new MutableLiveData<>();
         apiRequest.getAllRoom()
                 .enqueue(new Callback<GetRoomResponse>() {

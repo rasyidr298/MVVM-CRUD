@@ -61,7 +61,7 @@ public class WebServiceActivity extends AppCompatActivity {
         roomAdapter.setOnItemLongClickListener((view, room, position) -> {
             new MaterialAlertDialogBuilder(WebServiceActivity.this)
                     .setTitle("Menghapus Ruang "+room.getNamaRoom())
-                    .setMessage("Yakin akan menghapus Ruang"+ room.getNamaRoom())
+                    .setMessage("Yakin akan menghapus Ruang "+ room.getNamaRoom())
                     .setPositiveButton("YA", ((dialog, which) -> {
                         webServiceViewModel.deleteRoom(room.getIdRoom());
                         getAllRoom();

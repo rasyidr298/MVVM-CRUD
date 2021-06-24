@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import id.rrdev.mvvmroomdatabase.data.network.response.AddRoomResponse;
 import id.rrdev.mvvmroomdatabase.data.network.response.GetRoomResponse;
 import id.rrdev.mvvmroomdatabase.data.repository.RoomRespository;
-import okhttp3.ResponseBody;
 
 public class WebServiceViewModel extends AndroidViewModel {
 
@@ -20,11 +19,11 @@ public class WebServiceViewModel extends AndroidViewModel {
         super(application);
 
         roomRespository = new RoomRespository();
-        this.getRoomLiveData = roomRespository.getllRoom();
+        this.getRoomLiveData = roomRespository.getAllRoom();
     }
 
     public LiveData<GetRoomResponse> getRoomLiveData() {
-        this.getRoomLiveData = roomRespository.getllRoom();
+        this.getRoomLiveData = roomRespository.getAllRoom();
         return getRoomLiveData;
     }
 

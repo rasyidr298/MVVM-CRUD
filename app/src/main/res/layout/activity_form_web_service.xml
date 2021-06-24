@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.webService.FormWebServiceActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvNama"
@@ -12,76 +11,132 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/etNama"
+        app:layout_constraintBottom_toTopOf="@+id/tInputNama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ruang 4.4.4" />
 
-    <EditText
-        android:id="@+id/etNama"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tInputNama"
+        style="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="nama ruangan"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
-        android:id="@+id/etKapasitas"
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Ruangan"
+            android:inputType="textEmailAddress"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tInputKapasitas"
+        style="@style/TextInputLayoutAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="kapasitas ruangan"
-        android:inputType="number"
-        android:maxLines="1"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNama" />
+        app:layout_constraintTop_toBottomOf="@+id/tInputNama"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
-        android:id="@+id/etFasilitas"
-        android:layout_width="0dp"
-        android:hint="fasilitas ruangan"
-        android:maxLines="1"
-        android:maxLength="20"
+        <EditText
+            android:id="@+id/etKapasitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="kapasitas"
+            android:inputType="numberDecimal"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tInputFasilitas"
+        style="@style/TextInputLayoutAppearance"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/etKapasitas"
-        app:layout_constraintStart_toStartOf="@+id/etKapasitas"
-        app:layout_constraintTop_toBottomOf="@+id/etKapasitas" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tInputKapasitas"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
-        android:id="@+id/etDeskripsi"
-        android:layout_width="0dp"
-        android:hint="deskripsi ruangan"
-        android:maxLines="5"
+        <EditText
+            android:id="@+id/etFasilitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="fasilitas"
+            android:inputType="text"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tInputDesripsi"
+        style="@style/TextInputLayoutAppearance"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/etFasilitas"
-        app:layout_constraintStart_toStartOf="@+id/etFasilitas"
-        app:layout_constraintTop_toBottomOf="@+id/etFasilitas" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tInputFasilitas"
+        app:layout_constraintVertical_chainStyle="packed">
 
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top"
+            android:hint="deskripsi"
+            android:inputType="textMultiLine|textCapSentences"
+            android:lines="5"
+            android:maxLines="10"
+            android:minLines="1"
+            android:scrollbars="none"
+            android:textAlignment="gravity"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnAddRoom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="24dp"
         android:text="Tambah Ruangan"
-        app:layout_constraintTop_toBottomOf="@+id/etDeskripsi" />
+        app:layout_constraintTop_toBottomOf="@+id/tInputDesripsi"
+        tools:layout_editor_absoluteX="20dp" />
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.39" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
