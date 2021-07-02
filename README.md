@@ -1,2 +1,2 @@
 # MVVM-Room-Database
-berisi materi room database arsitektur mvvm
+berisi materi CRUD database local dan online arsitektur mvvm
